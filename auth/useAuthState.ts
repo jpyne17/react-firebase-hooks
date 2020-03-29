@@ -8,10 +8,11 @@ export default (auth: auth.Auth): AuthStateHook => {
   const { error, loading, setError, setValue, value } = useLoadingValue<
     User,
     auth.Error
-  >(() => auth.currentUser);
+  >(auth ? () => auth.currentUser : null);
 
   useEffect(
     () => {
+      if (auth === null) return;
       const listener = auth.onAuthStateChanged(setValue, setError);
 
       return () => {
@@ -20,6 +21,8 @@ export default (auth: auth.Auth): AuthStateHook => {
     },
     [auth]
   );
+
+  if (auth === null) return null;
 
   return [value, loading, error];
 };
