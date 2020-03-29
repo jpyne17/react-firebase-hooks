@@ -22,7 +22,7 @@ export default (auth: auth.Auth): AuthStateHook => {
     [auth]
   );
 
-  if (auth === null) return null;
+  if (auth === null) return [null, null, null];
 
   return [value, loading, error];
 };
