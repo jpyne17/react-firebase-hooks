@@ -13,3 +13,4 @@ npm-debug.log
 # Testing output
 .nyc_output
 coverage
+.idea
